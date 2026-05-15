@@ -4,10 +4,6 @@ from stats import average_rating, author_statistics
 
 
 def show_menu():
-    print("\n=== Трекер прочитанных книг ===")
-    print("1. Добавить книгу")
-    print("2. Показать все книги")
-    print("3. Показать среднюю оценку")
     print("\n=== Трекер книг ===")
     print("1. Добавить книгу")
     print("2. Показать все книги")
@@ -28,10 +24,6 @@ def add_new_book():
             if 1 <= rating <= 5:
                 break
 
-            print("Оценка должна быть от 1 до 5.")
-
-        except ValueError:
-            print("Введите число.")
             print("Введите число от 1 до 5")
 
         except ValueError:
@@ -48,13 +40,11 @@ def show_books():
     books = load_books()
 
     if not books:
-        print("Список книг пуст.")
         print("Список пуст")
         return
 
     for index, book in enumerate(books, start=1):
         print(
-            f"{index}. {book['author']} — "
             f"{index}. "
             f"{book['author']} - "
             f"{book['title']} | "
@@ -63,22 +53,14 @@ def show_books():
         )
 
 
-def show_average_rating():
-    books = load_books()
 def show_average():
     books = load_books()
+
     avg = average_rating(books)
 
     print(f"Средняя оценка: {avg:.2f}")
 
 
-def show_author_stats():
-    books = load_books()
-    stats = author_statistics(books)
-
-    if not stats:
-        print("Нет данных.")
-        return
 def show_stats():
     books = load_books()
 
@@ -101,22 +83,6 @@ def main():
             show_books()
 
         elif choice == "3":
-
-            show_average_rating()
-
-        elif choice == "4":
-            show_author_stats()
-
-        elif choice == "5":
-            title = input("Введите название книги: ")
-            delete_book(title)
-
-        elif choice == "6":
-            print("Выход из программы.")
-            break
-
-        else:
-            print("Неверный пункт меню.")
             show_average()
 
         elif choice == "4":
