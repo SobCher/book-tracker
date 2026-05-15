@@ -8,6 +8,10 @@ def show_menu():
     print("1. Добавить книгу")
     print("2. Показать все книги")
     print("3. Показать среднюю оценку")
+    print("\n=== Трекер книг ===")
+    print("1. Добавить книгу")
+    print("2. Показать все книги")
+    print("3. Средняя оценка")
     print("4. Статистика по авторам")
     print("5. Удалить книгу")
     print("6. Выход")
@@ -28,6 +32,10 @@ def add_new_book():
 
         except ValueError:
             print("Введите число.")
+            print("Введите число от 1 до 5")
+
+        except ValueError:
+            print("Введите число")
 
     read_date = input("Дата прочтения: ")
 
@@ -41,11 +49,14 @@ def show_books():
 
     if not books:
         print("Список книг пуст.")
+        print("Список пуст")
         return
 
     for index, book in enumerate(books, start=1):
         print(
             f"{index}. {book['author']} — "
+            f"{index}. "
+            f"{book['author']} - "
             f"{book['title']} | "
             f"Оценка: {book['rating']} | "
             f"Дата: {book['read_date']}"
@@ -53,6 +64,8 @@ def show_books():
 
 
 def show_average_rating():
+    books = load_books()
+def show_average():
     books = load_books()
     avg = average_rating(books)
 
@@ -66,6 +79,10 @@ def show_author_stats():
     if not stats:
         print("Нет данных.")
         return
+def show_stats():
+    books = load_books()
+
+    stats = author_statistics(books)
 
     for author, count in stats.items():
         print(f"{author}: {count} книг")
@@ -84,6 +101,7 @@ def main():
             show_books()
 
         elif choice == "3":
+
             show_average_rating()
 
         elif choice == "4":
@@ -99,6 +117,21 @@ def main():
 
         else:
             print("Неверный пункт меню.")
+            show_average()
+
+        elif choice == "4":
+            show_stats()
+
+        elif choice == "5":
+            title = input("Название книги: ")
+            delete_book(title)
+
+        elif choice == "6":
+            print("Выход")
+            break
+
+        else:
+            print("Неверный пункт")
 
 
 if __name__ == "__main__":
