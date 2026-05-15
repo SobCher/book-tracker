@@ -19,11 +19,7 @@ def save_books(books):
 
 def add_book(book):
     books = load_books()
-
-<<<<<<< HEAD
     # Проверка дубликатов
-=======
->>>>>>> feature/stats-and-models
     for existing_book in books:
         if (
             existing_book["author"].lower() == book["author"].lower()
@@ -34,10 +30,6 @@ def add_book(book):
 
     books.append(book)
     save_books(books)
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/stats-and-models
     print("Книга добавлена.")
 
 
